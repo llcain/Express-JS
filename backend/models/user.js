@@ -10,12 +10,8 @@ const userSchema = new Schema({
     age: {
         type: Number,
         required: true
-    },
-    username: {
-        type: String,
-        required: true
     }
-}, {timestamps: true })
+})
 
 module.exports = mongoose.model('User', userSchema)
 

@@ -1,6 +1,6 @@
 // require express
 const express = require('express')
-const User = require('../models/userModel')
+const User = require('../models/user')
 
 const router = express.Router()
 
@@ -15,16 +15,15 @@ router.get('/:id', (req,res) => {
 })
 
 // Post a new user
-router.post('/', (req, res) => {
-    const {name, age, username} = req.body
+router.post('/', async (req, res) => {
+    const {name, age} = req.body
     try {
-        const user = User.create({name, age, username})
+        const user = await User.create({name, age})
         res.status(200).json(user)
 
-    } catch (erro) {
+    } catch (error) {
         res.status(400).json({error: error.message})
-    }
-    res.json({mssg: "Post a new user"})
+    }    
 })
 
 // Delete a user
